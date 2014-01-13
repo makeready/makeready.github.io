@@ -2,9 +2,20 @@
 	<head>
 		<title>Greg Ward</title>
 		<style>
+			
+
+			@font-face{
+			font-family: eightbit;
+			src: url("8bit.TTF");
+			}
+
 			body{
 				background-color: black;
+				font-family: eightbit, sans-serif;
+				color: white;
+				letter-spacing:10;
 			}
+
 			#gameCanvas{
 				background-color:black;
 				margin:auto;
@@ -25,7 +36,25 @@
 				background-color:white;
 				color:black;
 			}
+			#footer{
+				position:fixed;
+				top:50%;
+				left:16%;
+				color:rgba(255,255,255,0.065);
+				line-height:8em;
+			}
+			#credits{
+				position:relative;
+				font-size:7em;
+				margin:auto;
+			}
+			#instructions{
+				position:relative;
+				font-size:4em;
+				margin:auto;
+			}
 		</style>
+
 	</head>
 	<body onload='setup();'>
 		<div id='gameCanvas'></div>
@@ -33,5 +62,9 @@
 		<script src='keyboard.js'></script>
 		<script src='jquery-1.10.2.min.js'></script>
 		<script src='game.js'></script>
+		<div id='footer'>
+			<div id='credits'>GREG WARD</div>
+			<div id='instructions'>.....WASD / SPACE.....</div>
+		</div>
 	</body>
 </html>

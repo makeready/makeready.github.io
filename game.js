@@ -39,23 +39,25 @@ var stopExecution = false;
 
 
 //SHIP
-var shipWidth = 10;
+var shipRadiusTop = 0;
+var shipWidth = 3;
 var shipHeight = 30;
 var shipDepth = 10;
+var shipRadiusSegments = 4;
 var shipQuality = 1;
 
-var shipMaterial = new THREE.MeshPhongMaterial({
+var shipMaterial = new THREE.MeshLambertMaterial({
 	color: 0xFF0000,
 });
 
 ship = new THREE.Mesh(
-	new THREE.CubeGeometry(
+	new THREE.CylinderGeometry(
+		shipRadiusTop,
 		shipWidth,
 		shipHeight,
-		shipDepth,
-		shipQuality,
-		shipQuality,
-		shipQuality),
+		shipRadiusSegments,
+		1,
+		true),
 	shipMaterial);
 
 
@@ -79,7 +81,7 @@ crosshairs = new THREE.Mesh(
 //LIGHT
 pointLight = new THREE.PointLight(0xF8D898);
 pointLight.position.x = -1000;
-pointLight.position.y = 2000;
+pointLight.position.y = -1000;
 pointLight.position.z = 2000;
 pointLight.intensity = 2.9;
 pointLight.distance = 10000;
@@ -87,6 +89,7 @@ pointLight.distance = 10000;
 
 function setup(){
 	scene.add(ship);
+	ship.rotation.z = -90 * Math.PI/180;
 	scene.add(pointLight);
 	scene.add(crosshairs);
 	crosshairs.rotation.y = -90 * Math.PI/180;
@@ -203,13 +206,15 @@ function Enemy(texture, href){
 
 function Shot(){
 	var width = 200;
-	var height = 3; 
-	var depth = 3;
+	var height = 2; 
+	var depth = 2;
 	var quality = 1;
 	var shotDirX = 1;
 	var shotSpeed = 40;
 	var material = new THREE.MeshPhongMaterial({
-		color: 0x00FBFF
+		color: 0xFFFFFF,
+		transparent: true,
+		opacity: 0.8
 	});
 
 	var mesh = new THREE.Mesh(
@@ -350,6 +355,7 @@ function shipControls(){
 	ship.position.x += shipDirX;
 	camera.position.x += shipDirX / 2;
 	crosshairs.rotation.z += 3 * Math.PI / 180;
+	ship.rotation.x += 3 * Math.PI / 180;
 }
 
 function collision(objA,objB){
