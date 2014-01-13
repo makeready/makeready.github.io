@@ -58,10 +58,11 @@ ship = new THREE.Mesh(
 	shipMaterial);
 
 
-var crosshairsWidth = 60;
-var crosshairsHeight = 60;
+var crosshairsWidth = 10;
+var crosshairsHeight = 10;
 var crosshairsMaterial = new THREE.MeshNormalMaterial({
 	map: THREE.ImageUtils.loadTexture('crosshairs.png')
+	//color: 0xFFFFFF
 	});
 
 crosshairs = new THREE.Mesh(
@@ -85,6 +86,8 @@ function setup(){
 	scene.add(ship);
 	scene.add(pointLight);
 	scene.add(crosshairs);
+	crosshairs.rotation.y = -90 * Math.PI/180;
+	crosshairs.position.x = 250;
 	ship.position.x = -fieldWidth/2 + shipWidth;
 
 	for(i=0; i<=50; i++){
