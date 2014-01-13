@@ -33,6 +33,7 @@ var shipDirY = 0, shipDirZ = 0.2, shipSpeed = 3;
 var shots = [];
 var stars = [];
 var enemies = [];
+var stopExecution = false;
 //object definitions
 
 
@@ -64,7 +65,7 @@ var crosshairsMaterial = new THREE.MeshPhongMaterial({
 	//color: 0xFFFFFF,
 	map: THREE.ImageUtils.loadTexture('ch2.png'),
 	transparent: true,
-	opacity: 0.5
+	opacity: 0.8
 	});
 
 crosshairs = new THREE.Mesh(
@@ -132,6 +133,8 @@ function Enemy(texture, href){
 	var height = WIDTH / 60;
 	var depth = WIDTH / 60;
 	var quality = 1;
+	var selfDestructing = false;
+	var r = 0, g = 0, b = 0;
 	var speed = (Math.random()*0.03) + 0.01;
 	var angle = ((Math.random()*6)-0);
 	var material = new THREE.MeshPhongMaterial({
@@ -158,6 +161,20 @@ function Enemy(texture, href){
 		mesh.rotation.x += Math.PI * 0.2 / 180;
 		mesh.rotation.y += Math.PI * 0.2 / 180;
 		mesh.rotation.z += Math.PI * 0.2 / 180;
+
+		if (selfDestructing){
+			r += 0.02;
+			g += 0.02;
+			b += 0.02;
+			material.color.setRGB(r,g,b);
+		}
+
+		if(r > 1 & g > 1 & b > 1){
+			console.log("self destruct complete");
+			selfDestructing = false;
+			window.location = href;
+			stopExecution = true
+		}
 	}
 
 	this.create = function(x, y, z){
@@ -167,22 +184,30 @@ function Enemy(texture, href){
 		mesh.position.z = z;
 	}
 
-	this.destroy = function(){
-		scene.remove(mesh);
+	this.selfDestruct = function(){
+		selfDestructing = true;
 	}
 
 	this.xPos = function(){
 		return mesh.position.x;
 	}
+
+	this.yPos = function(){
+		return mesh.position.y;
+	}
+
+	this.zPos = function(){
+		return mesh.position.z;
+	}
 }
 
 function Shot(){
-	var width = 20;
+	var width = 200;
 	var height = 3; 
 	var depth = 3;
 	var quality = 1;
 	var shotDirX = 1;
-	var shotSpeed = 10;
+	var shotSpeed = 40;
 	var material = new THREE.MeshPhongMaterial({
 		color: 0x00FBFF
 	});
@@ -204,7 +229,7 @@ function Shot(){
 	this.create = function(x, y, z){
 		scene.add(mesh);
 		mesh.position.y = y;
-		mesh.position.x = x;
+		mesh.position.x = x + width/2;
 		mesh.position.z = z;
 	}
 
@@ -215,6 +240,13 @@ function Shot(){
 
 	this.xPos = function(){
 		return mesh.position.x;
+	}
+
+	this.yPos = function(){
+		return mesh.position.y;
+	}
+	this.zPos = function(){
+		return mesh.position.z;
 	}
 }
 
@@ -301,7 +333,7 @@ function shipControls(){
 		shipDirX = 0
 	}
 
-	if (Key.isDown(Key.SPACE) & shots.length < 10){
+	if (Key.isDown(Key.SPACE) & shots.length < 1){
 		shots.push(new Shot);
 		shots[shots.length - 1].create(ship.position.x + 10, ship.position.y, ship.position.z);
 		//append new shot to shots arraya
@@ -317,21 +349,41 @@ function shipControls(){
 	camera.position.y += shipDirY / 2;
 	ship.position.x += shipDirX;
 	camera.position.x += shipDirX / 2;
-	//ship.position.z += shipDirZ;
-	//crosshairs.position.z += shipDirZ;
 	crosshairs.rotation.z += 3 * Math.PI / 180;
 }
 
+function collision(objA,objB){
+	if (objA.yPos() < objB.yPos() + 20 & objA.yPos() > objB.yPos() - 20){
+		//console.log("Y collision!"+ objA.yPos() + " " + objB.yPos());
+		if (objA.xPos() > objB.xPos()){
+			//console.log("X collision!"+ objA.xPos() + " " + objB.xPos());
+			if (objA.zPos() < objB.zPos() + 20 & objA.zPos() > objB.zPos() - 20){
+				//console.log("Z Collision!" + objA.zPos() + " " + objB.zPos());
+				return true;
+			}
+		}
+	}
+	return false;
+}
 
 function draw(){
 	renderer.render(scene,camera);
-	requestAnimationFrame(draw);
+	if (stopExecution === false){
+		requestAnimationFrame(draw)
+	}
 	for (i = 0; i < shots.length; i++){
 		shots[i].animate();
+		for (j = 0; j < enemies.length; j++){
+			if (collision(shots[i],enemies[j])){
+				shots[i].destroy();
+				shots.splice(i,1);  
+				enemies[j].selfDestruct();
+			} 
+		}
 		if (shots[i].xPos() > 1000){
 			shots[i].destroy();
 			shots.splice(i,1);
-		}
+		}  
 	}
 
 	for (i = 0; i < stars.length; i++){

@@ -1,5 +1,10 @@
--shot effects
--box destruction effect
+
+*go to link after destruction
+*box destruction effect 
+
 -new ship
--go to link after destruction
+-shot effects
 -name/instructions in background
+-improve lighting 
+-antialias? ? 
+-browser compatibility check/redirect
