@@ -1,8 +1,8 @@
 //RENDERER INIT
 var WIDTH = $(window).width() - 20;
 var HEIGHT = $(window).height() - 20;
-var fieldWidth = HEIGHT / 20;
-var fieldHeight = WIDTH / 10;
+var fieldWidth = HEIGHT / 2;
+var fieldHeight = (WIDTH / 6);
 var fieldDepth = 10;
 
 var renderer = new THREE.WebGLRenderer();
@@ -12,7 +12,7 @@ var c = document.getElementById("gameCanvas");
 c.appendChild(renderer.domElement);
 
 //CAMERA & SCENE INIT
-var VIEW_ANGLE = 50;
+var VIEW_ANGLE = 40;
 var ASPECT = WIDTH / HEIGHT;
 var NEAR = 0.1;
 var FAR = 10000;
@@ -70,26 +70,26 @@ function setup(){
 	scene.add(ship);
 	scene.add(pointLight);
 	ship.position.x = -fieldWidth/2 + shipWidth;
-	ship.position.z = shipDepth;
 
 	for(i=0; i<=50; i++){
 		stars.push(new Star)
 		stars[stars.length - 1].create(ship.position.x + 10, ship.position.y, ship.position.z);
 	}
 
-	enemies.push(new Enemy('twitter.jpg','http://www.twitter.com/make_ready'))
-	//enemies.push(new Enemy('twitter.jpg','http://www.twitter.com/make_ready'))
-	//enemies.push(new Enemy('twitter.jpg','http://www.twitter.com/make_ready'))
-	//enemies.push(new Enemy('twitter.jpg','http://www.twitter.com/make_ready'))
-	//enemies.push(new Enemy('twitter.jpg','http://www.twitter.com/make_ready'))
+	enemies.push(new Enemy('twitter.jpg','http://www.twitter.com/make_ready'));
+	enemies.push(new Enemy('facebook.jpg','http://www.facebook.com/emurge'));
+	enemies.push(new Enemy('context.tiff','http://www.twittercontext.com'));
+	enemies.push(new Enemy('soundcloud.png','http://soundcloud.com/makeready-1'));
+	enemies.push(new Enemy('linkedin.jpg','http://www.linkedin.com/profile/view?id=235682678'));
+	enemies.push(new Enemy('github.png','http://github.com/makeready'));
 
 	for (i = 0; i < enemies.length; i++){
 
-		enemies[i].create(1000, 0, -200);
+		enemies[i].create(500, (i * WIDTH / 30) - 120, Math.floor(Math.random()*50)-25);
 	}
 
-	camera.position.x = ship.position.x - 100;
-	camera.position.z = ship.position.z + 100;
+	camera.position.x = ship.position.x - 200;
+	camera.position.z = ship.position.z + 200;
 	camera.rotation.z = -90 * Math.PI/180;
 	camera.rotation.y = -60 * Math.PI/180;
 	draw();
@@ -107,12 +107,15 @@ function getRandomColor() {
 function Enemy(texture, href){
 	var href = href;
 	var texture = THREE.ImageUtils.loadTexture(texture);
-	var width = 100;
-	var height = 100;
-	var depth = 100;
+	var width = WIDTH / 40;
+	var height = WIDTH / 40;
+	var depth = WIDTH / 40;
 	var quality = 1;
+	var speed = 1.5;
+	var angle = ((Math.random()*6)-0);
 	var material = new THREE.MeshPhongMaterial({
-		map: texture
+		//map: texture, 
+		color: 0xFF0000
 	});
 
 	var mesh = new THREE.Mesh(
@@ -126,9 +129,8 @@ function Enemy(texture, href){
 		material);
 
 	this.animate = function(){
-		mesh.position.x += dirX * speed;
-		mesh.position.y += dirY * speed;
-		mesh.position.z += dirZ * speed;
+		angle += 0.05
+		mesh.position.z = (Math.sin(angle))*20;
 	}
 
 	this.create = function(x, y, z){
@@ -305,6 +307,10 @@ function draw(){
 		if (stars[i].xPos() < 200){
 			stars[i].setNewPosition();
 		}
+	}
+
+	for (i = 0; i < enemies.length; i++){
+		enemies[i].animate();
 	}
 	shipControls();
 }
