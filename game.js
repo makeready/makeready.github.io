@@ -69,7 +69,7 @@ Detector = {
 };
 
 if(Detector.webgl){
-  renderer = new THREE.WebGLRenderer({antialias:true});
+  renderer = new THREE.WebGLRenderer({antialias:false});
 } else {
   renderer = new THREE.CanvasRenderer();
 }
