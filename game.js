@@ -99,7 +99,7 @@ function setup(){
 
 	enemies.push(new Enemy('twitter.jpg','http://www.twitter.com/make_ready'));
 	enemies.push(new Enemy('facebook.jpg','http://www.facebook.com/emurge'));
-	enemies.push(new Enemy('context.tiff','http://www.twittercontext.com'));
+	enemies.push(new Enemy('context.png','http://www.twittercontext.com'));
 	enemies.push(new Enemy('soundcloud.png','http://soundcloud.com/makeready-1'));
 	enemies.push(new Enemy('linkedin.jpg','http://www.linkedin.com/profile/view?id=235682678'));
 	enemies.push(new Enemy('github.png','http://github.com/makeready'));
@@ -135,8 +135,8 @@ function Enemy(texture, href){
 	var speed = (Math.random()*0.03) + 0.01;
 	var angle = ((Math.random()*6)-0);
 	var material = new THREE.MeshPhongMaterial({
-		//map: texture, 
-		color: 0xFF0000
+		map: texture, 
+		//color: 0xFF0000
 	});
 
 	var mesh = new THREE.Mesh(
