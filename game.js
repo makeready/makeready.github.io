@@ -62,7 +62,7 @@ var crosshairsWidth = 10;
 var crosshairsHeight = 10;
 var crosshairsMaterial = new THREE.MeshPhongMaterial({
 	//color: 0xFFFFFF,
-	map: THREE.ImageUtils.loadTexture('crosshairs.png'),
+	map: THREE.ImageUtils.loadTexture('ch2.png'),
 	transparent: true,
 	opacity: 0.5
 	});
