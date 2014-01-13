@@ -60,9 +60,9 @@ ship = new THREE.Mesh(
 
 var crosshairsWidth = 60;
 var crosshairsHeight = 60;
-var crosshairsMaterial = new THREE.MeshNormalMaterial(
+var crosshairsMaterial = new THREE.MeshNormalMaterial({
 	map: THREE.ImageUtils.loadTexture('crosshairs.png')
-	);
+	});
 
 crosshairs = new THREE.Mesh(
 	new THREE.PlaneGeometry(
