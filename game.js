@@ -5,7 +5,13 @@ var fieldWidth = HEIGHT / 2;
 var fieldHeight = (WIDTH / 6);
 var fieldDepth = 10;
 
-var renderer = new THREE.WebGLRenderer();
+
+if(Detector.webgl){
+  renderer = new THREE.WebGLRenderer({antialias:true});
+} else {
+  renderer = new THREE.CanvasRenderer();
+}
+
 renderer.setSize(WIDTH,HEIGHT);
 
 var c = document.getElementById("gameCanvas");
