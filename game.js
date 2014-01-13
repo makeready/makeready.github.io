@@ -319,7 +319,7 @@ function shipControls(){
 	camera.position.x += shipDirX / 2;
 	//ship.position.z += shipDirZ;
 	//crosshairs.position.z += shipDirZ;
-	crosshairs.rotation.z += 1 * Math.PI / 180;
+	crosshairs.rotation.z += 3 * Math.PI / 180;
 }
 
 
