@@ -85,7 +85,7 @@ function setup(){
 
 	for (i = 0; i < enemies.length; i++){
 
-		enemies[i].create(500, (i * WIDTH / 30) - 120, Math.floor(Math.random()*50)-25);
+		enemies[i].create(400, (i * WIDTH / 30) - 120, Math.floor(Math.random()*50)-25);
 	}
 
 	camera.position.x = ship.position.x - 200;
