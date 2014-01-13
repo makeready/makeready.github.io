@@ -85,7 +85,7 @@ function setup(){
 
 	for (i = 0; i < enemies.length; i++){
 
-		enemies[i].create(400, (i * WIDTH / 30) - 120, Math.floor(Math.random()*50)-25);
+		enemies[i].create(300 + Math.floor(Math.random()*100) , (i * WIDTH / 30) - 120, Math.floor(Math.random()*50)-25);
 	}
 
 	camera.position.x = ship.position.x - 200;
@@ -111,7 +111,7 @@ function Enemy(texture, href){
 	var height = WIDTH / 40;
 	var depth = WIDTH / 40;
 	var quality = 1;
-	var speed = (Math.random()*0.05) + 0.01;
+	var speed = (Math.random()*0.03) + 0.01;
 	var angle = ((Math.random()*6)-0);
 	var material = new THREE.MeshPhongMaterial({
 		map: texture, 
@@ -128,9 +128,15 @@ function Enemy(texture, href){
 			quality),
 		material);
 
+	mesh.rotation.x = Math.PI * 90 / 180;
+	mesh.rotation.y = Math.PI * (Math.random()*40) / 180;
+
 	this.animate = function(){
 		angle += speed
 		mesh.position.z = (Math.sin(angle))*20;
+		mesh.rotation.x += Math.PI * 0.2 / 180;
+		mesh.rotation.y += Math.PI * 0.2 / 180;
+		mesh.rotation.z += Math.PI * 0.2 / 180;
 	}
 
 	this.create = function(x, y, z){
