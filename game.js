@@ -60,8 +60,12 @@ ship = new THREE.Mesh(
 
 var crosshairsWidth = 10;
 var crosshairsHeight = 10;
+var crosshairsTexture = THREE.ImageUtils.loadTexture('crosshairs.png')
+crosshairsTexture.wrapS = THREE.RepeatWrapping;
+crosshairsTexture.wrapT = THREE.RepeatWrapping;
+crosshairsTexture.repeat.set(2,2);
 var crosshairsMaterial = new THREE.MeshNormalMaterial({
-	map: THREE.ImageUtils.loadTexture('crosshairs.png')
+	map: crosshairsTexture
 	//color: 0xFFFFFF
 	});
 
@@ -70,6 +74,8 @@ crosshairs = new THREE.Mesh(
 		crosshairsWidth,
 		crosshairsHeight),
 	crosshairsMaterial);
+
+crosshairs.side = THREE.DoubleSide;
 
 	
 
