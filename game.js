@@ -111,11 +111,11 @@ function Enemy(texture, href){
 	var height = WIDTH / 40;
 	var depth = WIDTH / 40;
 	var quality = 1;
-	var speed = Math.random()*0.05;
+	var speed = (Math.random()*0.05) + 0.01;
 	var angle = ((Math.random()*6)-0);
 	var material = new THREE.MeshPhongMaterial({
 		map: texture, 
-		color: 0xFF0000
+		//color: 0xFF0000
 	});
 
 	var mesh = new THREE.Mesh(
