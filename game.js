@@ -317,6 +317,7 @@ function shipControls(){
 	ship.position.z += shipDirZ;
 	crosshairs.position.z += shipDirZ;
 	crosshairs.rotation.z += 1 * Math.PI / 180;
+	crosshairs.rotation.y += 1 * Math.PI / 180;
 }
 
 
