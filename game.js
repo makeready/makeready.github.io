@@ -86,7 +86,7 @@ function setup(){
 	scene.add(ship);
 	scene.add(pointLight);
 	scene.add(crosshairs);
-	crosshairs.rotation.y = -90 * Math.PI/180;
+	crosshairs.rotation.y = 90 * Math.PI/180;
 	crosshairs.position.x = 250;
 	ship.position.x = -fieldWidth/2 + shipWidth;
 
@@ -133,8 +133,8 @@ function Enemy(texture, href){
 	var speed = (Math.random()*0.03) + 0.01;
 	var angle = ((Math.random()*6)-0);
 	var material = new THREE.MeshPhongMaterial({
-		map: texture, 
-		//color: 0xFF0000
+		//map: texture, 
+		color: 0xFF0000
 	});
 
 	var mesh = new THREE.Mesh(
@@ -312,9 +312,11 @@ function shipControls(){
 
 	ship.position.y += shipDirY;
 	crosshairs.position.y += shipDirY;
+	camera.position.y += shipDirY / 2;
 	ship.position.x += shipDirX;
 	ship.position.z += shipDirZ;
 	crosshairs.position.z += shipDirZ;
+	crosshairs.rotation.z += 1 * Math.PI / 180;
 }
 
 
