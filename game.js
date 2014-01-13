@@ -57,6 +57,21 @@ ship = new THREE.Mesh(
 		shipQuality),
 	shipMaterial);
 
+
+var crosshairsWidth = 60;
+var crosshairsHeight = 60;
+var crosshairsMaterial = new THREE.MeshNormalMaterial(
+	map: THREE.ImageUtils.loadTexture('crosshairs.png')
+	);
+
+crosshairs = new THREE.Mesh(
+	new THREE.PlaneGeometry(
+		crosshairsWidth,
+		crosshairsHeight),
+	crosshairsMaterial);
+
+	
+
 //LIGHT
 pointLight = new THREE.PointLight(0xF8D898);
 pointLight.position.x = -1000;
@@ -69,6 +84,7 @@ pointLight.distance = 10000;
 function setup(){
 	scene.add(ship);
 	scene.add(pointLight);
+	scene.add(crosshairs);
 	ship.position.x = -fieldWidth/2 + shipWidth;
 
 	for(i=0; i<=50; i++){
@@ -107,9 +123,9 @@ function getRandomColor() {
 function Enemy(texture, href){
 	var href = href;
 	var texture = THREE.ImageUtils.loadTexture(texture);
-	var width = WIDTH / 40;
-	var height = WIDTH / 40;
-	var depth = WIDTH / 40;
+	var width = WIDTH / 60;
+	var height = WIDTH / 60;
+	var depth = WIDTH / 60;
 	var quality = 1;
 	var speed = (Math.random()*0.03) + 0.01;
 	var angle = ((Math.random()*6)-0);
@@ -292,8 +308,10 @@ function shipControls(){
 	}
 
 	ship.position.y += shipDirY;
+	crosshairs.position.y += shipDirY;
 	ship.position.x += shipDirX;
 	ship.position.z += shipDirZ;
+	crosshairs.position.z += shipDirZ;
 }
 
 
