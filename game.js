@@ -111,10 +111,10 @@ function Enemy(texture, href){
 	var height = WIDTH / 40;
 	var depth = WIDTH / 40;
 	var quality = 1;
-	var speed = 1.5;
+	var speed = Math.random()*0.05;
 	var angle = ((Math.random()*6)-0);
 	var material = new THREE.MeshPhongMaterial({
-		//map: texture, 
+		map: texture, 
 		color: 0xFF0000
 	});
 
@@ -129,7 +129,7 @@ function Enemy(texture, href){
 		material);
 
 	this.animate = function(){
-		angle += 0.05
+		angle += speed
 		mesh.position.z = (Math.sin(angle))*20;
 	}
 
