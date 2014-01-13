@@ -44,8 +44,8 @@ var shipDepth = 10;
 var shipQuality = 1;
 
 var shipMaterial = new THREE.MeshPhongMaterial({
-	color: 0xFF0000
-})
+	color: 0xFF0000,
+});
 
 ship = new THREE.Mesh(
 	new THREE.CubeGeometry(
@@ -60,13 +60,9 @@ ship = new THREE.Mesh(
 
 var crosshairsWidth = 10;
 var crosshairsHeight = 10;
-var crosshairsTexture = THREE.ImageUtils.loadTexture('crosshairs.png')
-crosshairsTexture.wrapS = THREE.RepeatWrapping;
-crosshairsTexture.wrapT = THREE.RepeatWrapping;
-crosshairsTexture.repeat.set(2,2);
-var crosshairsMaterial = new THREE.MeshNormalMaterial({
-	map: crosshairsTexture
-	//color: 0xFFFFFF
+var crosshairsMaterial = new THREE.MeshPhongMaterial({
+	//color: 0xFFFFFF,
+	map: THREE.ImageUtils.loadTexture('crosshairs.png')
 	});
 
 crosshairs = new THREE.Mesh(
@@ -74,8 +70,6 @@ crosshairs = new THREE.Mesh(
 		crosshairsWidth,
 		crosshairsHeight),
 	crosshairsMaterial);
-
-crosshairs.side = THREE.DoubleSide;
 
 	
 
@@ -92,7 +86,7 @@ function setup(){
 	scene.add(ship);
 	scene.add(pointLight);
 	scene.add(crosshairs);
-	crosshairs.rotation.y = 90 * Math.PI/180;
+	crosshairs.rotation.y = -90 * Math.PI/180;
 	crosshairs.position.x = 250;
 	ship.position.x = -fieldWidth/2 + shipWidth;
 
@@ -323,7 +317,6 @@ function shipControls(){
 	ship.position.z += shipDirZ;
 	crosshairs.position.z += shipDirZ;
 	crosshairs.rotation.z += 1 * Math.PI / 180;
-	crosshairs.rotation.y += 1 * Math.PI / 180;
 }
 
 
