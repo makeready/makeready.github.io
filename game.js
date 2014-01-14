@@ -8,6 +8,7 @@ var fieldDepth = 10;
 
 
 /**
+ * Detector.js
  * @author alteredq / http://alteredqualia.com/
  * @author mr.doob / http://mrdoob.com/
  */
