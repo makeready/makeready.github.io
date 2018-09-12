@@ -172,8 +172,6 @@ function setup(){
 
 	enemies.push(new Enemy('twitter.jpg','http://www.twitter.com/make_ready'));
 	enemies.push(new Enemy('rubygems.jpeg','https://rubygems.org/gems/dynamini'));
-	enemies.push(new Enemy('facebook.jpg','http://www.facebook.com/emurge'));
-
 	enemies.push(new Enemy('soundcloud.png','http://soundcloud.com/makeready-1'));
 	enemies.push(new Enemy('linkedin.jpg','https://www.linkedin.com/in/grward'));
 	enemies.push(new Enemy('github.png','http://github.com/makeready'));
