@@ -170,7 +170,6 @@ function setup(){
 		stars[stars.length - 1].create(ship.position.x + 10, ship.position.y, ship.position.z);
 	}
 
-	enemies.push(new Enemy('twitter.jpg','http://www.twitter.com/make_ready'));
 	enemies.push(new Enemy('rubygems.jpeg','https://rubygems.org/gems/dynamini'));
 	enemies.push(new Enemy('soundcloud.png','http://soundcloud.com/makeready-1'));
 	enemies.push(new Enemy('linkedin.jpg','https://www.linkedin.com/in/grward'));
