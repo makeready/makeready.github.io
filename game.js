@@ -172,7 +172,7 @@ function setup(){
 
 	enemies.push(new Enemy('rubygems.jpeg','https://rubygems.org/gems/dynamini'));
 	enemies.push(new Enemy('soundcloud.png','http://soundcloud.com/makeready-1'));
-	enemies.push(new Enemy('linkedin.jpg','https://www.linkedin.com/in/grward'));
+	enemies.push(new Enemy('linkedin.jpg','https://www.linkedin.com/in/stellaward/'));
 	enemies.push(new Enemy('github.png','http://github.com/makeready'));
 
 	for (i = 0; i < enemies.length; i++){
