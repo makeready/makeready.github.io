@@ -171,9 +171,9 @@ function setup(){
 	}
 
 	enemies.push(new Enemy('rubygems.jpeg','https://rubygems.org/gems/dynamini'));
-	enemies.push(new Enemy('soundcloud.png','http://soundcloud.com/makeready-1'));
-	enemies.push(new Enemy('linkedin.jpg','https://www.linkedin.com/in/stellaward/'));
+	enemies.push(new Enemy('ig.png', 'https://www.instagram.comm/asteriskinesis'))
 	enemies.push(new Enemy('github.png','http://github.com/makeready'));
+	enemies.push(new Enemy('bandcamp.jpeg','https://thesunneversets.bandcamp.com'));
 
 	for (i = 0; i < enemies.length; i++){
 
@@ -242,7 +242,7 @@ function Enemy(texture, href){
 		if(r > 1 & g > 1 & b > 1){
 			console.log("self destruct complete");
 			selfDestructing = false;
-			window.location = href;
+			window.open(href, '_blank');
 			stopExecution = true
 		}
 	}
