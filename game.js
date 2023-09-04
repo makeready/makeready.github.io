@@ -173,7 +173,7 @@ function setup(){
 	enemies.push(new Enemy('github.png','https://www.zombo.com/'));
 	enemies.push(new Enemy('ig.png', 'https://www.instagram.com/asteriskinesis'));
 	enemies.push(new Enemy('bandcamp.jpeg','https://thesunneversets.bandcamp.com'));
-	enemies.push(new Enemy('rubygems.jpeg','https://www.zombo.com'/));
+	enemies.push(new Enemy('rubygems.jpeg','https://www.zombo.com/'));
 	
 
 	for (i = 0; i < enemies.length; i++){
