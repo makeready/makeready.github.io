@@ -170,9 +170,11 @@ function setup(){
 		stars[stars.length - 1].create(ship.position.x + 10, ship.position.y, ship.position.z);
 	}
 
-	enemies.push(new Enemy('github.png','http://github.com/makeready'));
+	enemies.push(new Enemy('github.png','https://www.zombo.com/'));
 	enemies.push(new Enemy('ig.png', 'https://www.instagram.com/asteriskinesis'))
 	enemies.push(new Enemy('bandcamp.jpeg','https://thesunneversets.bandcamp.com'));
+	enemies.push(new Enemy('rubygems.jpeg','https://www.zombo.com'/));
+	
 
 	for (i = 0; i < enemies.length; i++){
 		enemies[i].create(300 + Math.floor(Math.random()*100) , (i * WIDTH / 30) - 90, Math.floor(Math.random()*50)-25);
@@ -238,11 +240,9 @@ function Enemy(texture, href){
 		}
 
 		if(r > 1 & g > 1 & b > 1){
-			console.log("self destruct complete");
 			selfDestructing = false;
-			window.open(href, '_blank');
-			material.color.setRGB(0,0,0);
-			// stopExecution = true
+			window.open(href);
+			stopExecution = true
 		}
 	}
 
