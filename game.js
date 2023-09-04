@@ -177,7 +177,7 @@ function setup(){
 	
 
 	for (i = 0; i < enemies.length; i++){
-		enemies[i].create(300 + Math.floor(Math.random()*100) , (i * WIDTH / 30) - 90, Math.floor(Math.random()*50)-25);
+		enemies[i].create(300 + Math.floor(Math.random()*100) , (i * WIDTH / 30) - 60, Math.floor(Math.random()*50)-25);
 	}
 
 	camera.position.x = ship.position.x - 200;
@@ -241,7 +241,7 @@ function Enemy(texture, href){
 
 		if(r > 1 & g > 1 & b > 1){
 			selfDestructing = false;
-			window.open(href);
+			window.location = href;
 			stopExecution = true;
 		}
 	}
